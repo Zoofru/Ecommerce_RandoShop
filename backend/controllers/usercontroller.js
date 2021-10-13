@@ -3,16 +3,30 @@ const userController = {}
 
 userController.createAccount = async (req, res) => {
     try {
-        const [user, created] = await models.user.findOrCreate({
+        const user = await models.user.findOrCreate({
             where: {
                 username: req.body.username,
+                password: req.body.password,
+                email: req.body.email
+            }
+        })
+        res.json({user})
+    } catch (error) {
+        res.json({error})
+    }
+}
+
+userController.login = async (req, res) => {
+    console.log(req.body.email);
+    try {
+        const user = await models.user.findOne({
+            where: {
+                email: req.body.email,
                 password: req.body.password
             }
         })
-        if (!created) {
-            res.json('Exists')
-        }
-        await res.json({user})
+
+        res.json({user})
     } catch (error) {
         res.json({error: error.message})
     }

@@ -9,6 +9,7 @@ import { useState } from "react";
 
 const Nav = () => {
     const [open, setOpen] = useState(false)
+    const [ca, setCa] = useState(false)
 
     const handleOpen = _ => setOpen(true)
     const handleClose = _ => setOpen(false)
@@ -23,8 +24,7 @@ const Nav = () => {
         boxShadow: 24,
         p: 4,
         width: 300,
-        height: 380,
-        outline: 'none'
+        outline: 'none',
     };
 
     return (
@@ -62,14 +62,32 @@ const Nav = () => {
                     aria-labelledby="accModal-title"
                     aria-describedby="accModal-form"
                 >
-                    <Box sx={style}>
-                        <Typography id="accModal-title" variant="h3" component="h2" style={{textAlign: 'center'}}>
-                            Sign-In
-                        </Typography>
+                    {ca ? 
+                        <Box sx={style}>
+                            <Typography id="accModal-title" variant="h3" component="h3" style={{textAlign: 'center', fontSize: '40px'}}>
+                                Create account
+                            </Typography>
 
-                        <CaLogin />
+                            <CaLogin props={ca} />
 
-                    </Box>
+                            <Typography variant='p'component='p' style={{textAlign: 'center', marginTop: '10px'}} onClick={() => setCa(false)}>
+                                Already a member? <Link to='/' style={{textDecoration: 'none'}}>Login</Link>
+                            </Typography>
+
+                        </Box>
+                    : 
+                        <Box sx={style}>
+                            <Typography id="accModal-title" variant="h3" component="h2" style={{textAlign: 'center'}}>
+                                Sign-In
+                            </Typography>
+
+                            <CaLogin props={ca}/>
+
+                            <Typography variant='p'component='p' style={{textAlign: 'center', marginTop: '10px'}} onClick={() => setCa(true)}>
+                                New here? <Link to='/' style={{textDecoration: 'none'}}>Create Account</Link>
+                            </Typography>
+                        </Box>
+                    }
                 </Modal>
             </div>
         </div>
