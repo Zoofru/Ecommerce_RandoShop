@@ -27,6 +27,11 @@ const Nav = () => {
         outline: 'none',
     };
 
+    const iconStyle = {
+        fill: '#EB6123',
+        transform: 'scale(2.0)'
+    }
+
     return (
         <div className='nav'>
             <div>
@@ -40,19 +45,13 @@ const Nav = () => {
             <div className='accountNCart'>
                 <AccountCircleIcon
                     className='iconH40p-active'
-                    style={{
-                        fill: '#EB6123',
-                        transform: 'scale(2.0)'
-                    }}
+                    style={iconStyle}
                     onClick={handleOpen}
                 />
                 
                 <AddShoppingCartIcon
                     className='iconH40p-active'
-                    style={{
-                        fill: '#EB6123',
-                        transform: 'scale(2.0)'
-                    }}
+                    style={iconStyle}
                 />
 
                 <Modal
