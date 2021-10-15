@@ -11,8 +11,8 @@ const Nav = () => {
     const [open, setOpen] = useState(false)
     const [ca, setCa] = useState(false)
 
-    const handleOpen = _ => setOpen(true)
-    const handleClose = _ => setOpen(false)
+    const handleOpen = _ => { setOpen(true) }
+    const handleClose = _ => { setOpen(false) }
 
     const style = {
         position: 'absolute',
@@ -53,7 +53,6 @@ const Nav = () => {
                         fill: '#EB6123',
                         transform: 'scale(2.0)'
                     }}
-
                 />
 
                 <Modal

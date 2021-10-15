@@ -87,3 +87,22 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.itmCont {
+  margin-top: 5vh;
+  display: flex;
+  justify-content: center;
+}
+
+.flex-row-jc-cen {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrap { flex-wrap: wrap; }
+
+.cardsHme {
+  width: 75%;
+}
