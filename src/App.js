@@ -2,6 +2,7 @@ import './App.css';
 import Home from './pages/home';
 import Nav from './components/nav'
 import { Route } from 'react-router-dom'
+import ItemPage from './pages/itempage';
 
 function App() {
   return (
@@ -13,6 +14,14 @@ function App() {
         path='/'
         render={() => (
           <Home />
+        )}
+      />
+
+      <Route
+        exact
+        path='/:itemId'
+        render={rProps => (
+          <ItemPage itemId={rProps.match.params.itemId} />
         )}
       />
 

@@ -8,8 +8,6 @@ const Home = props => {
     useEffect(() => {
         const getItems = async () => {
             const res = await axios.get('http://localhost:3001/items/all')
-    
-            console.log(res);
             setItems(res.data.item)
         }
         
