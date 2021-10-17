@@ -5,7 +5,7 @@ import GetItemsByGenres from "../components/getitemsbygenre";
 
 const Home = props => {
     const [items, setItems] = useState([])
-    const GENRES = ['clothing', 'electronics', 'cards']
+    const GENRES = ['clothing', 'electronics', 'random']
     
     useEffect(() => {
         const getItems = async () => {
@@ -26,7 +26,7 @@ const Home = props => {
         <div>
             <BgImage />
             <div className='itmCont wrap'>
-                <div style={{marginTop: '35vh'}}>
+                <div style={{marginTop: '30vh'}}>
                     {/* {itemCardsHtml} */}
                     {itemsByGenres}
                 </div>

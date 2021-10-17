@@ -1,21 +1,22 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import Typography from '@mui/material/Typography';
 import ItemCard from './itemcard';
+import Link from '@mui/material/Link';
 
 const GetItemsByGenre = (props) => {
     const [items, setItems] = useState([])
 
     useEffect(() => {
-        const getItemsInGenres = async (gen) => {
+        const getItemsInGenres = async (gen, len=3) => {
             console.log(gen);
             const res = await axios.post(`http://localhost:3001/items/genre/all`, {
                 genre: gen
             })
-            setItems(res.data.items)
+            setItems(res.data.items.splice(0, len))
         }
 
-        getItemsInGenres(props.genre)
+        getItemsInGenres(props.genre, 5)
     }, [props.genre])
 
     let itemC = items.map((item, i) => {
@@ -26,9 +27,12 @@ const GetItemsByGenre = (props) => {
 
     return(
         <div>
-            <Typography gutterBottom variant='h2' component='h2' style={{textAlign: 'left', marginLeft: '50px', fontWeight: 'bold'}}>
-                {genreName}
-            </Typography>
+            <div className='flex-row'>
+                <Typography gutterBottom variant='h2' component='h2' style={{textAlign: 'left', fontWeight: 'bold'}}>
+                    {genreName}
+                </Typography>
+                <Link href={`/${genreName}`}>See More</Link>
+            </div>
             <div className='flex-row-jc-cen'>
                 <div className='flex-row-jc-cen cardsHme'>
                     {itemC}

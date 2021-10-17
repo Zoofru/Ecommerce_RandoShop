@@ -11,15 +11,15 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('items', [{
-      itemname: 'Blue-Eyes White Dragon',
-      price: 120.99,
-      description : 'A legendary dragon that takes pride in its enormous power. Its power of destruction far exceeds comprehension. This legendary dragon is a powerful engine of destruction. Virtually invincible, very few have faced this awesome creature and lived to tell the tale.',
-      image: 'https://res.cloudinary.com/csicdn/image/upload/c_pad,fl_lossy,h_300,q_auto,w_300/v1/Images/Products/YuGiOh%20Art/Legendary%20Collection%20Kaiba/full/LCKCEN001A.jpg',
+     await queryInterface.bulkInsert('items', [{
+      itemname: 'Adult Velociraptor Skeleton',
+      price: 2749.99,
+      description: 'This incredible replica of an adult velociraptor will blow all other centerpieces out of the water! This show-stopping display piece stands 4′ tall and measures over 6′ long from head to tail. A must for any dino lover looking to add prehistoric flair to their home.',
+      image: 'https://cdn.thisiswhyimbroke.com/images/adult-velociraptor-skeleton-dragontoothart-300x250.jpg',
       genreofitem: 'random',
       createdAt: new Date(),
       updatedAt: new Date()
-    }], {})
+    }])
   },
 
   down: async (queryInterface, Sequelize) => {

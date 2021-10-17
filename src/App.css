@@ -112,8 +112,6 @@ body {
 
 .cardsHme {
   width: 90%;
-  flex-wrap: wrap;
-
 }
 
 .imgHome{
@@ -121,6 +119,7 @@ body {
   height: 50vh;
   width: 100%;
   position: absolute;
+  z-index: -1;
 }
 
 .fde {
@@ -128,5 +127,12 @@ body {
   height: 100%;
   width: 100%;
   background-size: cover;
-  /* position: relative; */
+  z-index: -1;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
