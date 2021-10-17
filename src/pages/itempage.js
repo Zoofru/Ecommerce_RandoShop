@@ -8,6 +8,7 @@ const ItemPage = props => {
         const getItem = async () => {
             const res = await axios.get(`http://localhost:3001/items/${props.itemId}`)
             setItem(res.data.item)
+            console.log(res);
         }
     
         getItem()
@@ -15,7 +16,7 @@ const ItemPage = props => {
     
     return(
         <div>
-            {props.itemName}
+            {item.itemname}
         </div>
     )
 }

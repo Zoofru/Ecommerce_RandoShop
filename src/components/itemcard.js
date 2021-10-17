@@ -10,10 +10,15 @@ const ItemCard = props => {
     const style= {
         marginLeft: '10px',
         marginRight: '10px',
+        marginBottom: '15px',
         height: '250px',
         maxHeight: '250px', 
         overflowY: 'hidden',
-        textDecoration: 'none'
+        backgroundColor: 'white',
+        maxWidth: '300px',
+        minWidth: '300px',
+        borderRadius: '0px',
+        border: '2px solid black'
     }
 
     return(

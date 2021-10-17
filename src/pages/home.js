@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ItemCard from "../components/itemcard";
+import BgImage from "../components/bgimage";
+import GetItemsByGenres from "../components/getitemsbygenre";
 
 const Home = props => {
     const [items, setItems] = useState([])
+    const GENRES = ['clothing', 'electronics', 'cards']
     
     useEffect(() => {
         const getItems = async () => {
@@ -14,14 +16,20 @@ const Home = props => {
         getItems()
     }, [])
 
-    let itemCardsHtml = items.map((item, i) => {
-        return <ItemCard props={item} key={i} />
+    let itemsByGenres = GENRES.map((g,i) => {
+        return <GetItemsByGenres genre={g} key={i} />
     })
 
+
+
     return (
-        <div className='itmCont wrap'>
-            <div className='flex-row-jc-cen cardsHme'>
-                {itemCardsHtml}
+        <div>
+            <BgImage />
+            <div className='itmCont wrap'>
+                <div style={{marginTop: '35vh'}}>
+                    {/* {itemCardsHtml} */}
+                    {itemsByGenres}
+                </div>
             </div>
         </div>
     )

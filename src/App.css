@@ -6,8 +6,8 @@
 }
 
 body {
-  background-image: url('https://cdn.pixabay.com/photo/2020/09/23/19/58/halloween-5596921_960_720.jpg');
-  background-size: cover;
+  /* background-image: url('https://media-api.xogrp.com/images/f74b6787-1cae-47c8-b6d8-f6f88273e883'); */
+  background-color: rgb(224, 223, 223);
 }
 
 .nav {
@@ -26,6 +26,8 @@ body {
   font-family: 'Creepster', cursive;
   font-size: 60px;
 }
+
+.itmCont 
 
 .nameIcon:hover {
   cursor: pointer;
@@ -89,9 +91,10 @@ body {
 }
 
 .itmCont {
-  margin-top: 5vh;
+  margin-top: 0vh;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .flex-row-jc-cen {
@@ -101,12 +104,29 @@ body {
   align-items: center;
 }
 
-.wrap { flex-wrap: wrap; }
-
-.cardsHme {
-  width: 75%;
+.wrap { 
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap; 
 }
 
-.t {
-  text-decoration: none;
+.cardsHme {
+  width: 90%;
+  flex-wrap: wrap;
+
+}
+
+.imgHome{
+  mask-image: linear-gradient(to bottom, rgb(66, 64, 64) 40%, transparent 100%);
+  height: 50vh;
+  width: 100%;
+  position: absolute;
+}
+
+.fde {
+  background-image: url("https://i.imgur.com/ZAwR1wv.png");
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  /* position: relative; */
 }
