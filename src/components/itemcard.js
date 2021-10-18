@@ -18,7 +18,7 @@ const ItemCard = props => {
         maxWidth: '300px',
         minWidth: '300px',
         borderRadius: '0px',
-        border: '2px solid black'
+        boxShadow: '0px 0px 8px black'
     }
 
     return(
@@ -33,7 +33,7 @@ const ItemCard = props => {
                             alt={props.props.itemname}
                         />
                         <CardContent>
-                            <Typography className='t' gutterBottom variant="p" component="p" style={{textAlign: 'left', fontWeight: 'bold'}}>
+                            <Typography gutterBottom variant="p" component="p" style={{textAlign: 'left', fontWeight: 'bold'}}>
                                 ${props.props.price}
                             </Typography>
                             <Typography gutterBottom variant="h6" component="h6" style={{textAlign: 'left'}}>

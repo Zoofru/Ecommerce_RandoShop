@@ -27,7 +27,6 @@ const Home = props => {
             <BgImage />
             <div className='itmCont wrap'>
                 <div style={{marginTop: '30vh'}}>
-                    {/* {itemCardsHtml} */}
                     {itemsByGenres}
                 </div>
             </div>

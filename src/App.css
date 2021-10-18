@@ -136,3 +136,18 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+
+.flex-row-ali-cen { 
+  display: flex;
+  flex-direction: row;
+}
+
+.orangeBg-blackFnt {
+  background-color: #EB6123;
+  color: black;
+}
+
+.blackBg-orangeFnt {
+  background-color: black;
+  color: #EB6123;
+}
