@@ -32,4 +32,17 @@ userController.login = async (req, res) => {
     }
 }
 
+userController.verify = async (req,res) => {
+    try {
+        const user = await models.user.findOne({
+            where: {
+                id: req.body.id
+            }
+        })
+        res.json({user})
+    } catch (error) {
+        res.status(401)
+    }
+}
+
 module.exports = userController

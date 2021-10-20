@@ -2,8 +2,9 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Typography } from '@mui/material';
+import { UserContext } from '../context/usercontext';
 
 const CaLogin = props => {
     const [username, setUsername] = useState('')
@@ -13,6 +14,8 @@ const CaLogin = props => {
     const [eCaIncorrect, setECaIncorrect] = useState(false)
     const [email, setEmail] = useState('')
     const [invalidLogin, setInvalidLogin] = useState(false)
+    const { userState, fetchUser } = useContext(UserContext)
+    const [user, setUser] = userState
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -44,6 +47,8 @@ const CaLogin = props => {
         console.log(res);
         if(res.data.user !== undefined) {
             window.location.reload()
+            localStorage.setItem('uID', res.data.user[0].id)
+            setUser(res.data.user[0])
         } else {
             setECaIncorrect(true)
         }     
@@ -59,6 +64,7 @@ const CaLogin = props => {
         try {
             if(res.data.user.id) {
                 window.location.reload()
+                setUser(res.data.user)
             }
         } catch (error) {
             setInvalidLogin(true)
@@ -82,13 +88,6 @@ const CaLogin = props => {
                     }}
                     required
                 />
-                {props.props ? 
-                    <Typography variant='p' component='p' style={{color: '#EB6123', fontSize: '13px'}}>
-                        Username must be atleast 5 characters
-                    </Typography>
-                :
-                    null
-                }
 
                     
                 <TextField 
@@ -146,20 +145,27 @@ const CaLogin = props => {
                         }
 
                         <TextField 
-                            id="email" 
-                            label="Email" 
+                            id="username" 
+                            label="Username" 
                             variant="standard" 
                             spellCheck='false' 
                             autoComplete='off' 
-                            value={email}
-                            type='Email' 
-                            onChange={e => setEmail(e.target.value)} 
+                            value={username}
+                            type='text' 
+                            onChange={e => setUsername(e.target.value)} 
                             style={{
                                 display: 'flex',
                                 marginTop: '40px'
                             }}
                             required
                             />
+                            {props.props ? 
+                                <Typography variant='p' component='p' style={{color: '#EB6123', fontSize: '13px'}}>
+                                    Username must be atleast 5 characters
+                                </Typography>
+                            :
+                                null
+                            }
                     </>
                 : 
                     null

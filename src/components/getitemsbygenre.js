@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Fragment, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Typography from '@mui/material/Typography';
 import ItemCard from './itemcard';
 import Link from '@mui/material/Link';
@@ -9,7 +9,6 @@ const GetItemsByGenre = (props) => {
 
     useEffect(() => {
         const getItemsInGenres = async (gen, len=3) => {
-            console.log(gen);
             const res = await axios.post(`http://localhost:3001/items/genre/all`, {
                 genre: gen
             })

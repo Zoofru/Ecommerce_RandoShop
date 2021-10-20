@@ -60,7 +60,6 @@ const ItemPage = props => {
         width: '70%',
         display: 'flex',
         height: '100%',
-        display: 'flex',
         marginTop: '10%',
         justifyContent: 'space-around'
     }
@@ -101,7 +100,7 @@ const ItemPage = props => {
     return(
         <div className='flex-row-ali-cen' style={itemPageDiv}>
             <div style={{width: '50%'}}>
-                <img src={item.image} style={imageStyle}/>
+                <img src={item.image} style={imageStyle} alt='pumpkins'/>
             </div>
             <div style={infoContainer}>
                 <div style={infoStyle}>
