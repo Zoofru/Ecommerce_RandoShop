@@ -28,6 +28,22 @@ const ItemPage = props => {
         outline: 'none',
     };
 
+    const handleClickCart = () => {
+        if(!localStorage.getItem('uID')) {
+            handleOpen()
+        }
+
+        console.log('u can buy');
+    }
+
+    const handleOpenBuy = () => {
+        if(!localStorage.getItem('uID')) {
+            handleOpen()
+        }
+
+        console.log('u can buy');
+    }
+
     useEffect(() => {
         const getItem = async () => {
             const res = await axios.get(`http://localhost:3001/items/${props.itemId}`)
@@ -120,8 +136,8 @@ const ItemPage = props => {
                     </Typography>
                 </div>
                 <div style={buttonDivStyle}>
-                    <Button style={buttonStyleB} variant='contained' onClick={handleOpen}>Add To Cart</Button>
-                    <Button style={buttonStyleO} variant='contained' onClick={handleOpen}>Buy Now</Button>
+                    <Button style={buttonStyleB} variant='contained' onClick={handleClickCart}>Add To Cart</Button>
+                    <Button style={buttonStyleO} variant='contained' onClick={handleOpenBuy}>Buy Now</Button>
                 </div>
             </div>
                 {/* MODAL USED TWICE IN NAV CAN MAKE COMPONENT ON REFACTOR */}
@@ -131,31 +147,31 @@ const ItemPage = props => {
                     aria-labelledby="accModal-title"
                     aria-describedby="accModal-form"
                 >
-                    {ca ? 
-                        <Box sx={style}>
-                            <Typography id="accModal-title" variant="h3" component="h3" style={{textAlign: 'center', fontSize: '40px'}}>
-                                Create account
-                            </Typography>
+                {ca ? 
+                    <Box sx={style}>
+                        <Typography id="accModal-title" variant="h3" component="h3" style={{textAlign: 'center', fontSize: '40px'}}>
+                            Create account
+                        </Typography>
 
-                            <CaLogin props={ca} />
+                        <CaLogin props={ca} />
 
-                            <Typography variant='p'component='p' style={{textAlign: 'center', marginTop: '10px'}} onClick={() => setCa(false)}>
-                                Already a member? <Link to={`/${props.itemId}`} style={{textDecoration: 'none'}}>Login</Link>
-                            </Typography>
+                        <Typography variant='p'component='p' style={{textAlign: 'center', marginTop: '10px'}} onClick={() => setCa(false)}>
+                            Already a member? <Link to='/' style={{textDecoration: 'none'}}>Login</Link>
+                        </Typography>
 
-                        </Box>
-                    : 
-                        <Box sx={style}>
-                            <Typography id="accModal-title" variant="h3" component="h2" style={{textAlign: 'center'}}>
-                                Sign-In
-                            </Typography>
+                    </Box>
+                : 
+                    <Box sx={style}>
+                        <Typography id="accModal-title" variant="h3" component="h2" style={{textAlign: 'center'}}>
+                            Sign-In
+                        </Typography>
 
-                            <CaLogin props={ca}/>
+                        <CaLogin props={ca}/>
 
-                            <Typography variant='p'component='p' style={{textAlign: 'center', marginTop: '10px'}} onClick={() => setCa(true)}>
-                                New here? <Link to={`/${props.itemId}`} style={{textDecoration: 'none'}}>Create Account</Link>
-                            </Typography>
-                        </Box>
+                        <Typography variant='p'component='p' style={{textAlign: 'center', marginTop: '10px'}} onClick={() => setCa(true)}>
+                            New here? <Link to='/' style={{textDecoration: 'none'}}>Create Account</Link>
+                        </Typography>
+                    </Box>
                     }
                 </Modal>
         </div>

@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from 'react'
+import { useState, createContext } from 'react'
 import axios from 'axios'
 
 const UserContext = createContext()
@@ -8,9 +8,7 @@ const UserProvider = ({children}) => {
 
     const fetchUser = () => {
         axios.post('http://localhost:3001/user/verify', {
-            headers: {
-                id: localStorage.getItem('uID')
-            }
+            id: localStorage.getItem('uID')
         }).then(res => {
             console.log(res);
             setUser(res.data.user)

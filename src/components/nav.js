@@ -1,17 +1,43 @@
 import { Link } from "react-router-dom"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { useState, useContext, useEffect } from "react";
+import { UserContext } from '../context/usercontext';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import CaLogin from "./calogin";
-import { useState } from "react";
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 const Nav = () => {
     const [open, setOpen] = useState(false)
     const [ca, setCa] = useState(false)
+    const { userState, fetchUser } = useContext(UserContext)
+    const [user, setUser] = userState
+    const [anchorEl, setAnchorEl] = useState(null)
+    const openMenu = Boolean(anchorEl)
 
-    const handleOpen = _ => { setOpen(true) }
+    const handleMenuClick = e => {
+        setAnchorEl(e.currentTarget)
+    }
+
+    const handleMenuClose = (e) => {
+        setAnchorEl(null)
+        console.log(e);
+        if(e.target.childNodes[0].data === 'Logout') {
+            localStorage.removeItem('uID')
+            window.location.reload()
+        }
+    }
+
+    const handleOpen = e => { 
+        if(user) { 
+            handleMenuClick(e)
+        } else {
+            setOpen(true)
+        }
+    }
     const handleClose = _ => { setOpen(false) }
 
     const style = {
@@ -29,8 +55,19 @@ const Nav = () => {
 
     const iconStyle = {
         fill: '#EB6123',
-        transform: 'scale(2.0)'
+        transform: 'scale(2.0)',
+        marginBottom: '0px',
+        marginTop: '2px'
     }
+
+    const usernameStyle = {
+        color: 'white',
+        marginBottom: '0px',
+        marginTop: '0px'
+    }
+
+    useEffect(fetchUser, [])
+    console.log(user);
 
     return (
         <div className='nav'>
@@ -43,16 +80,31 @@ const Nav = () => {
                 <input className='navInput' required spellCheck='false'></input>
             </form>
             <div className='accountNCart'>
-                <AccountCircleIcon
-                    className='iconH40p-active'
-                    style={iconStyle}
-                    onClick={handleOpen}
-                />
-                
+                <div>
+                    <AccountCircleIcon
+                        className='iconH40p-active'
+                        style={iconStyle}
+                        onClick={handleOpen}
+                    />
+                    <p style={usernameStyle}>Hello, {user ? user.username : 'Login' }</p>
+
+                </div>
                 <AddShoppingCartIcon
                     className='iconH40p-active'
                     style={iconStyle}
                 />
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={openMenu}
+                        onClose={handleMenuClose}
+                        MenuListProps={{
+                        'aria-labelledby': 'basic-button',
+                        }}
+                    >
+                        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+                        <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+                    </Menu>
 
                 <Modal
                     open={open}

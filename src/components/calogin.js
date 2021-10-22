@@ -14,7 +14,7 @@ const CaLogin = props => {
     const [eCaIncorrect, setECaIncorrect] = useState(false)
     const [email, setEmail] = useState('')
     const [invalidLogin, setInvalidLogin] = useState(false)
-    const { userState, fetchUser } = useContext(UserContext)
+    const { userState } = useContext(UserContext)
     const [user, setUser] = userState
 
     const handleSubmit = e => {
@@ -49,8 +49,12 @@ const CaLogin = props => {
             window.location.reload()
             localStorage.setItem('uID', res.data.user[0].id)
             setUser(res.data.user[0])
+            setEmail('')
+            setPassword('')
         } else {
             setECaIncorrect(true)
+            setEmail('')
+            setPassword('')
         }     
     }
 
@@ -65,6 +69,7 @@ const CaLogin = props => {
             if(res.data.user.id) {
                 window.location.reload()
                 setUser(res.data.user)
+                localStorage.setItem('uID', res.data.user.id)
             }
         } catch (error) {
             setInvalidLogin(true)

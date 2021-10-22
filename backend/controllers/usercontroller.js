@@ -41,7 +41,7 @@ userController.verify = async (req,res) => {
         })
         res.json({user})
     } catch (error) {
-        res.status(401)
+        res.json({error: error.message})
     }
 }
 
