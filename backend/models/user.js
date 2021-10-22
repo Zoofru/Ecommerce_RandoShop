@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const bcrypt = require('bcryptjs');
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -11,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+    }
+    verifyPassword(pass) {
+      return bcrypt.compareSync(pass, this.password)
     }
   };
   user.init({
@@ -32,5 +36,9 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'user',
   });
+  user.addHook('afterValidate', async (user, options) => {
+    const hashedPass = await bcrypt.hash(user.password, 10)
+    user.password = hashedPass
+  })
   return user;
 };

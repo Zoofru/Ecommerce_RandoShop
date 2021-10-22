@@ -10,7 +10,6 @@ const UserProvider = ({children}) => {
         axios.post('http://localhost:3001/user/verify', {
             id: localStorage.getItem('uID')
         }).then(res => {
-            console.log(res);
             setUser(res.data.user)
         }).catch(err => {
             console.log(err);

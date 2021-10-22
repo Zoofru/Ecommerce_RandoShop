@@ -12,7 +12,7 @@ userController.createAccount = async (req, res) => {
         })
         res.json({user})
     } catch (error) {
-        res.json({error})
+        res.json({error: error.message})
     }
 }
 
@@ -22,11 +22,13 @@ userController.login = async (req, res) => {
         const user = await models.user.findOne({
             where: {
                 email: req.body.email,
-                password: req.body.password
             }
         })
-
-        res.json({user})
+        if(user.verifyPassword(req.body.password)) {
+            res.json({user})
+        } else {
+            res.json({'match': 'No Match'})
+        }
     } catch (error) {
         res.json({error: error.message})
     }
